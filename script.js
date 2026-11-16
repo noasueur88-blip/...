@@ -5,7 +5,6 @@ const nav = document.getElementById("nav");
 
 menuToggle.addEventListener("click", () => {
   nav.classList.toggle("open");
-
   menuToggle.textContent = nav.classList.contains("open") ? "✕" : "☰";
 });
 
@@ -40,46 +39,59 @@ document.querySelectorAll("[data-service]").forEach((button) => {
   });
 });
 
-// Formulaire de contact
+// Formulaire de contact avec Web3Forms
 const contactForm = document.getElementById("contact-form");
 const formNote = document.getElementById("form-note");
 
-// IMPORTANT : remplace cette adresse par ton adresse professionnelle.
-const contactEmail = "contact.nexora756@gmail.com";
-
-contactForm.addEventListener("submit", (event) => {
+contactForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const formData = new FormData(contactForm);
 
-  const name = formData.get("name").trim();
-  const email = formData.get("email").trim();
-  const service = formData.get("service");
-  const message = formData.get("message").trim();
+  const name = (formData.get("name") || "").trim();
+  const email = (formData.get("email") || "").trim();
+  const service = formData.get("service") || "";
+  const message = (formData.get("message") || "").trim();
 
   if (!name || !email || !service || !message) {
     formNote.textContent = "Merci de remplir tous les champs.";
     return;
   }
 
-  const subject = encodeURIComponent("Demande de devis NEXORA - " + service);
+  // Remplace cette valeur par ta clé Web3Forms
+  formData.append("access_key", "72bd1a24-81e1-4744-a778-1f9d56d21d0f");
 
-  const body = encodeURIComponent(
-    "Bonjour NEXORA,\n\n" +
-    "Nom : " + name + "\n" +
-    "Adresse e-mail : " + email + "\n" +
-    "Prestation : " + service + "\n\n" +
-    "Description du projet :\n" + message + "\n\n" +
-    "Envoyé depuis le site NEXORA."
+  formData.set("subject", "Demande de devis NEXORA - " + service);
+  formData.set(
+    "from_name",
+    "NEXORA - Formulaire du site"
   );
 
-  const mailtoLink =
-    "mailto:" + contactEmail +
-    "?subject=" + subject +
-    "&body=" + body;
+  formNote.textContent = "Envoi de votre demande...";
+  
+  const submitButton = contactForm.querySelector('[type="submit"]');
+  if (submitButton) submitButton.disabled = true;
 
-  formNote.textContent =
-    "Votre application e-mail va s'ouvrir avec votre demande préremplie.";
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
 
-  window.location.href = mailtoLink;
+    const result = await response.json();
+
+    if (result.success) {
+      formNote.textContent =
+        "Merci ! Votre demande a bien été envoyée à NEXORA.";
+      contactForm.reset();
+    } else {
+      formNote.textContent =
+        "L'envoi a échoué. Vérifiez la configuration et réessayez.";
+    }
+  } catch (error) {
+    formNote.textContent =
+      "Impossible d'envoyer votre demande. Réessayez plus tard.";
+  } finally {
+    if (submitButton) submitButton.disabled = false;
+  }
 });
