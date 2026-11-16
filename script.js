@@ -45,7 +45,7 @@ const contactForm = document.getElementById("contact-form");
 const formNote = document.getElementById("form-note");
 
 // IMPORTANT : remplace cette adresse par ton adresse professionnelle.
-const contactEmail = "contact@ton-domaine.fr";
+const contactEmail = "contact.nexora756@gmail.com";
 
 contactForm.addEventListener("submit", (event) => {
   event.preventDefault();
