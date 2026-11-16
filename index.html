@@ -304,9 +304,17 @@
           <textarea id="message" name="message" rows="6" placeholder="Expliquez-nous ce que vous souhaitez créer..." required></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary submit-button">Préparer mon message</button>
+        <!-- Protection anti-spam hCaptcha Web3Forms -->
+        <div class="h-captcha" data-captcha="true" data-theme="dark"></div>
+
+        <!-- Protection complémentaire : honeypot -->
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"
+               style="display:none !important;">
+
+        <button type="submit" class="btn btn-primary submit-button">Envoyer ma demande</button>
+
         <p class="form-note" id="form-note">
-          Le formulaire ouvrira votre application e-mail avec votre message prérempli.
+          Une vérification anti-spam est nécessaire avant l'envoi de votre demande.
         </p>
       </form>
     </section>
@@ -322,6 +330,8 @@
     </div>
   </footer>
 
+  <!-- Script officiel Web3Forms pour hCaptcha -->
+  <script src="https://web3forms.com/client/script.js" async defer></script>
   <script src="script.js"></script>
 </body>
 </html>
