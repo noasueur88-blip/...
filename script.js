@@ -81,10 +81,8 @@ contactForm.addEventListener("submit", async (event) => {
     const result = await response.json();
 
     if (result.success) {
-      formNote.textContent =
-        "Merci ! Votre demande a bien été envoyée à NEXORA.";
-      contactForm.reset();
-    } else {
+  window.location.href = "merci.html";
+  } else {
       formNote.textContent =
         "L'envoi a échoué. Vérifiez la configuration et réessayez.";
     }
