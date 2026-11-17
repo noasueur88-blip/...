@@ -97,10 +97,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       button.textContent = "Demande envoyée";
 
-      // Redirection seulement après confirmation de Web3Forms.
-      setTimeout(() => {
-      window.location.assign(bookingUrl);
-      }, 1500);
+     alert("Demande envoyée ! Redirection en cours.");
+
+     window.location.href =
+        "https://calendar.app.google/g55Wh5du6b4amngw6";
 
     } catch (error) {
       console.error(error);
