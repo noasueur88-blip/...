@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Confirmation de réception de votre demande auprès de NEXORA."
+  >
+
+  <title>Demande envoyée | NEXORA</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .thank-you-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+    }
+
+    .thank-you-card {
+      width: 100%;
+      max-width: 650px;
+      padding: 50px 35px;
+      text-align: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+    }
+
+    .thank-you-icon {
+      width: 85px;
+      height: 85px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      border-radius: 50%;
+      background: rgba(34, 211, 238, 0.12);
+      color: var(--secondary);
+      font-size: 42px;
+    }
+
+    .thank-you-card h1 {
+      color: var(--text);
+      font-size: 2.3rem;
+      margin-bottom: 18px;
+    }
+
+    .thank-you-card p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    .thank-you-card .btn {
+      display: inline-block;
+      margin-top: 25px;
+    }
+
+    @media (max-width: 600px) {
+      .thank-you-card {
+        padding: 35px 22px;
+      }
+
+      .thank-you-card h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="thank-you-page">
+
+    <div class="thank-you-card">
+
+      <div class="thank-you-icon">
+        ✓
+      </div>
+
+      <span class="section-tag">NEXORA CONTACT</span>
+
+      <h1>Merci pour votre demande !</h1>
+
+      <p>
+        Votre message a bien été envoyé à NEXORA.
+      </p>
+
+      <p>
+        Nous avons bien reçu votre demande et nous
+        reviendrons vers vous par e-mail dès que possible.
+      </p>
+
+      <a href="index.html" class="btn btn-primary">
+        Retour à l'accueil
+      </a>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
