@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Réutilise la clé Web3Forms du formulaire principal.
       // Remplace cette valeur par la même clé que dans index.html.
-      formData.append("access_key", "TA_CLE_WEB3FORMS");
+      formData.append("access_key", "72bd1a24-81e1-4744-a778-1f9d56d21d0f");
 
       formData.append("subject", "Nouvelle demande NEXORA");
       formData.append("from_name", "NEXORA - Commande");
