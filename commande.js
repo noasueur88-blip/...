@@ -99,8 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Redirection seulement après confirmation de Web3Forms.
       setTimeout(() => {
-        window.location.href = bookingUrl;
-      }, 1200);
+      window.location.assign(bookingUrl);
+      }, 1500);
 
     } catch (error) {
       console.error(error);
