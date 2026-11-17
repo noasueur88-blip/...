@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090914">
+  <meta name="description" content="Finalisez votre commande NEXORA en toute simplicité.">
+  <title>Commande — NEXORA</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="header">
+  <a class="logo" href="index.html">NEXORA<span>.</span></a>
+  <a href="index.html" class="btn btn-secondary">Retour au site</a>
+</header>
+
+<main class="section order-section">
+
+  <div class="section-heading">
+    <span class="section-tag">COMMANDE NEXORA</span>
+    <h1>Finalisez votre <span>commande.</span></h1>
+    <p>
+      Retrouvez les informations de votre prestation
+      et choisissez votre moyen de paiement après validation du devis.
+    </p>
+  </div>
+
+  <div class="order-container">
+
+    <section class="order-card">
+      <h2>Récapitulatif</h2>
+
+      <div class="order-field">
+        <label for="customer-name">Votre nom</label>
+        <input type="text" id="customer-name" placeholder="Votre nom">
+      </div>
+
+      <div class="order-field">
+        <label for="customer-email">Votre adresse e-mail</label>
+        <input type="email" id="customer-email" placeholder="vous@exemple.fr">
+      </div>
+
+      <div class="order-field">
+        <label for="service">Prestation</label>
+        <select id="service">
+          <option value="">Sélectionnez une prestation</option>
+          <option value="Création de serveur Starter">Serveur Starter</option>
+          <option value="Création de serveur Advanced">Serveur Advanced</option>
+          <option value="Création de bot Discord personnalisé">Bot Discord personnalisé</option>
+          <option value="Configuration Discord">Configuration Discord</option>
+        </select>
+      </div>
+
+      <div class="order-field">
+        <label for="order-details">Informations complémentaires</label>
+        <textarea id="order-details" rows="4"
+          placeholder="Décrivez les besoins de votre projet..."></textarea>
+      </div>
+
+      <div class="order-total">
+        <span>Montant</span>
+        <strong>Sur devis</strong>
+      </div>
+
+      <p class="order-notice">
+        Aucun paiement ne sera demandé avant la validation
+        de votre devis et des conditions de la prestation.
+      </p>
+    </section>
+
+    <section class="order-card payment-card">
+      <h2>Moyens de paiement</h2>
+
+      <p class="payment-intro">
+        Après validation de votre devis, vous recevrez
+        un lien de paiement sécurisé.
+      </p>
+
+      <div class="payment-method">
+        <div class="payment-logo">S</div>
+        <div>
+          <strong>Stripe</strong>
+          <span>Paiement sécurisé</span>
+        </div>
+        <span class="payment-status">À configurer</span>
+      </div>
+
+      <div class="payment-method">
+        <div class="payment-logo visa">VISA</div>
+        <div>
+          <strong>Visa</strong>
+          <span>Carte bancaire</span>
+        </div>
+        <span class="payment-status">À configurer</span>
+      </div>
+
+      <div class="payment-method">
+        <div class="payment-logo apple">Pay</div>
+        <div>
+          <strong>Apple Pay</strong>
+          <span>Paiement mobile</span>
+        </div>
+        <span class="payment-status">À configurer</span>
+      </div>
+
+      <div class="payment-method">
+        <div class="payment-logo paypal">P</div>
+        <div>
+          <strong>PayPal</strong>
+          <span>Paiement via PayPal</span>
+        </div>
+        <span class="payment-status">À configurer</span>
+      </div>
+
+      <button class="btn btn-primary order-button" id="order-button">
+        Envoyer ma demande
+      </button>
+
+      <p class="order-feedback" id="order-feedback" aria-live="polite"></p>
+
+      <p class="secure-note">
+        🔒 Aucun numéro de carte bancaire n'est demandé sur cette page.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <a class="logo" href="index.html">NEXORA<span>.</span></a>
+  <p>Discord Server & Bot Studio</p>
+  <p class="footer-slogan">Your Discord, Our Expertise.</p>
+
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> NEXORA. Tous droits réservés.</span>
+
+    <div class="footer-links">
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Politique de confidentialité</a>
+    </div>
+
+    <a href="index.html">Retour au site</a>
+  </div>
+</footer>
+
+<script src="commande.js"></script>
+
+</body>
+</html>
