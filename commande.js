@@ -1,4 +1,4 @@
-alert("NEXORA : le nouveau commande.js est chargé !");
+
 document.addEventListener("DOMContentLoaded", () => {
   const name = document.getElementById("customer-name");
   const email = document.getElementById("customer-email");
