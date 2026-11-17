@@ -7,25 +7,48 @@ document.addEventListener("DOMContentLoaded", () => {
   const button = document.getElementById("booking-button");
   const feedback = document.getElementById("order-feedback");
   const appointmentType = document.getElementById("appointment-type");
+  const year = document.getElementById("year");
 
   const bookingUrl =
     "https://calendar.app.google/g55Wh5du6b4amngw6";
 
-  document.getElementById("year").textContent =
-    new Date().getFullYear();
+  // Vérification des éléments HTML
+  if (
+    !name ||
+    !email ||
+    !service ||
+    !details ||
+    !button ||
+    !feedback ||
+    !appointmentType
+  ) {
+    console.error("NEXORA : un élément HTML est introuvable.");
+    return;
+  }
 
-  // Empêche la réservation avant l'envoi de la demande.
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
+
+  // Empêcher plusieurs envois simultanés
+  let isSending = false;
+
   button.addEventListener("click", async (event) => {
     event.preventDefault();
+
+    if (isSending) return;
+
     feedback.textContent = "";
 
+    // Vérification des champs
     if (
       !name.value.trim() ||
       !email.value.trim() ||
-      !service.value
+      !service.value ||
+      !appointmentType.value
     ) {
       feedback.textContent =
-        "Merci de remplir votre nom, votre e-mail et votre prestation.";
+        "Merci de remplir votre nom, votre e-mail, votre prestation et votre type de rendez-vous.";
       return;
     }
 
@@ -35,6 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    isSending = true;
+
     button.textContent = "Envoi en cours...";
     button.style.pointerEvents = "none";
     button.style.opacity = "0.6";
@@ -42,8 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const formData = new FormData();
 
-      // Réutilise la clé Web3Forms du formulaire principal.
-      // Remplace cette valeur par la même clé que dans index.html.
+      // Remplacer par ta NOUVELLE clé Web3Forms
+      // après avoir régénéré l'ancienne.
       formData.append("access_key", "72bd1a24-81e1-4744-a778-1f9d56d21d0f");
 
       formData.append("subject", "Nouvelle demande NEXORA");
@@ -56,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Type de rendez-vous",
         appointmentType.value
       );
+
       formData.append(
         "Description du projet",
         details.value.trim() || "Non renseignée"
@@ -63,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       formData.append(
         "Rendez-vous",
-        "À réserver sur Google Calendar"
+        "Le client doit réserver sur Google Calendar."
       );
 
       const response = await fetch(
@@ -77,40 +103,31 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await response.json();
 
       if (!response.ok || !result.success) {
-        throw new Error("L'envoi de la demande a échoué.");
+        throw new Error(
+          result.message || "Échec de l'envoi de la demande."
+        );
       }
 
-      // Conserve les informations pour le suivi sur cette page.
-      sessionStorage.setItem(
-        "nexora_order",
-        JSON.stringify({
-          name: name.value.trim(),
-          email: email.value.trim(),
-          service: service.value,
-          appointmentType: appointmentType.value,
-          details: details.value.trim()
-        })
-      );
-
+      // L'envoi est confirmé : afficher le message.
       feedback.textContent =
-        "Demande envoyée ! Redirection vers la réservation...";
+        "Demande envoyée avec succès ! Redirection vers Google Calendar...";
 
       button.textContent = "Demande envoyée";
 
-     alert("Demande envoyée ! Redirection en cours.");
-
-     window.location.href =
-        "https://calendar.app.google/g55Wh5du6b4amngw6";
+      // Redirection après confirmation de Web3Forms.
+      window.location.assign(bookingUrl);
 
     } catch (error) {
-      console.error(error);
+      console.error("Erreur NEXORA :", error);
 
       feedback.textContent =
-        "Impossible d'envoyer votre demande. Réessayez.";
+        "L'envoi a échoué. Vérifiez votre connexion et réessayez.";
 
       button.textContent = "Choisir mon créneau";
       button.style.pointerEvents = "auto";
       button.style.opacity = "1";
+
+      isSending = false;
     }
   });
 });
