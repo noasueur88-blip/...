@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#090914">
-  <meta name="description" content="Finalisez votre commande NEXORA en toute simplicité.">
+  <meta name="description" content="Finalisez votre commande NEXORA et réservez votre rendez-vous.">
   <title>Commande — NEXORA</title>
 
   <link rel="stylesheet" href="style.css">
@@ -26,31 +26,31 @@
 
   <div class="section-heading">
     <span class="section-tag">COMMANDE NEXORA</span>
-    <h1>Finalisez votre <span>commande.</span></h1>
+    <h1>Préparez votre <span>projet.</span></h1>
     <p>
-      Retrouvez les informations de votre prestation
-      et choisissez votre moyen de paiement après validation du devis.
+      Décrivez votre besoin, choisissez votre prestation
+      et réservez un créneau avec NEXORA.
     </p>
   </div>
 
   <div class="order-container">
 
     <section class="order-card">
-      <h2>Récapitulatif</h2>
+      <h2>Votre projet</h2>
 
       <div class="order-field">
         <label for="customer-name">Votre nom</label>
-        <input type="text" id="customer-name" placeholder="Votre nom">
+        <input type="text" id="customer-name" placeholder="Votre nom" required>
       </div>
 
       <div class="order-field">
         <label for="customer-email">Votre adresse e-mail</label>
-        <input type="email" id="customer-email" placeholder="vous@exemple.fr">
+        <input type="email" id="customer-email" placeholder="vous@exemple.fr" required>
       </div>
 
       <div class="order-field">
         <label for="service">Prestation</label>
-        <select id="service">
+        <select id="service" required>
           <option value="">Sélectionnez une prestation</option>
           <option value="Création de serveur Starter">Serveur Starter</option>
           <option value="Création de serveur Advanced">Serveur Advanced</option>
@@ -76,31 +76,47 @@
       </p>
     </section>
 
-    <section class="order-card payment-card">
-      <h2>Moyens de paiement</h2>
+    <section class="order-card">
+      <h2>Votre rendez-vous</h2>
 
       <p class="payment-intro">
-        Après validation de votre devis, vous recevrez
-        un lien de paiement sécurisé.
+        Choisissez le type de rendez-vous adapté à votre projet.
       </p>
 
-      <div class="payment-method">
-        <div class="payment-logo paypal">P</div>
-        <div>
-          <strong>PayPal</strong>
-          <span>Paiement via PayPal</span>
-        </div>
-        <span class="payment-status">À configurer</span>
+      <div class="order-field">
+        <label for="appointment-type">Type de rendez-vous</label>
+        <select id="appointment-type">
+          <option value="Consultation">Discussion sur le projet</option>
+          <option value="Création">Séance de création</option>
+        </select>
       </div>
 
-      <button class="btn btn-primary order-button" id="order-button">
-        Envoyer ma demande
-      </button>
+      <div class="payment-method">
+        <div>
+          <strong>Discussion sur le projet</strong>
+          <span>Échanger sur vos besoins et définir votre projet.</span>
+        </div>
+      </div>
 
-      <p class="order-feedback" id="order-feedback" aria-live="polite"></p>
+      <div class="payment-method">
+        <div>
+          <strong>Séance de création</strong>
+          <span>Travailler sur la réalisation de votre serveur ou bot.</span>
+        </div>
+      </div>
+
+      <a
+        class="btn btn-primary order-button"
+        id="booking-button"
+        href="https://calendar.app.google/g55Wh5du6b4amngw6"
+        target="_blank"
+        rel="noopener noreferrer">
+        Choisir mon créneau
+      </a>
 
       <p class="secure-note">
-        🔒 Aucun numéro de carte bancaire n'est demandé sur cette page.
+        Votre réservation sera enregistrée dans Google Calendar
+        selon les paramètres de votre page de réservation.
       </p>
     </section>
 
@@ -123,6 +139,10 @@
     <a href="index.html">Retour au site</a>
   </div>
 </footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 <script src="commande.js"></script>
 
