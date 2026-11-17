@@ -839,3 +839,177 @@ select {
   }
 }
 
+  
+/* PAGE COMMANDE NEXORA */
+
+.order-section {
+  padding-top: 150px;
+  min-height: 80vh;
+}
+
+.order-container {
+  width: min(1050px, 92%);
+  margin: 50px auto 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.order-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.order-card h2 {
+  margin-bottom: 25px;
+}
+
+.order-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 20px;
+}
+
+.order-field label {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.order-field input,
+.order-field select,
+.order-field textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-light);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+
+.order-field input:focus,
+.order-field select:focus,
+.order-field textarea:focus {
+  border-color: var(--primary);
+}
+
+.order-field select option {
+  background: var(--surface);
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-top: 15px;
+  border-top: 1px solid var(--border);
+  font-weight: 700;
+}
+
+.order-total strong {
+  color: var(--secondary);
+}
+
+.order-notice,
+.payment-intro,
+.secure-note {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.payment-intro {
+  margin-bottom: 25px;
+}
+
+.payment-method {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 15px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-light);
+}
+
+.payment-logo {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #272044;
+  color: white;
+  font-weight: 900;
+}
+
+.payment-logo.visa {
+  background: #173b78;
+  font-size: 12px;
+}
+
+.payment-logo.apple {
+  background: #30303b;
+}
+
+.payment-logo.paypal {
+  background: #123d72;
+}
+
+.payment-method strong,
+.payment-method span {
+  display: block;
+}
+
+.payment-method span {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.payment-method .payment-status {
+  margin-left: auto;
+  text-align: right;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.order-button {
+  width: 100%;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.order-feedback {
+  color: var(--secondary);
+  font-size: 13px;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+.secure-note {
+  margin-top: 20px;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .order-container {
+    grid-template-columns: 1fr;
+  }
+
+  .order-card {
+    padding: 22px;
+  }
+
+  .payment-method {
+    flex-wrap: wrap;
+  }
+}
+
