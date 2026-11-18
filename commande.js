@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       formData.append(
         "access_key",
-        "REMPLACE_PAR_TA_NOUVELLE_CLE"
+        "72bd1a24-81e1-4744-a778-1f9d56d21d0f"
       );
 
       formData.append(
