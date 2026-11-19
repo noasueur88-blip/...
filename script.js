@@ -72,7 +72,7 @@ if (contactForm && formNote) {
     }
 
     // Remplace par ta nouvelle clé Web3Forms
-    formData.set("access_key", "REMPLACE_PAR_TA_NOUVELLE_CLE");
+    formData.set("access_key", "72bd1a24-81e1-4744-a778-1f9d56d21d0f");
 
     formData.set("subject", "Demande NEXORA - " + service);
     formData.set("from_name", "NEXORA - Formulaire du site");
