@@ -1,29 +1,36 @@
-
 // Menu mobile
 const menuToggle = document.getElementById("menu-toggle");
 const nav = document.getElementById("nav");
 
-menuToggle.addEventListener("click", () => {
-  nav.classList.toggle("open");
-  menuToggle.textContent = nav.classList.contains("open") ? "✕" : "☰";
-});
-
-// Fermer le menu après avoir cliqué sur un lien
-document.querySelectorAll(".nav a").forEach((link) => {
-  link.addEventListener("click", () => {
-    nav.classList.remove("open");
-    menuToggle.textContent = "☰";
+if (menuToggle && nav) {
+  menuToggle.addEventListener("click", () => {
+    nav.classList.toggle("open");
+    menuToggle.textContent = nav.classList.contains("open") ? "✕" : "☰";
   });
-});
+
+  // Fermer le menu après avoir cliqué sur un lien
+  document.querySelectorAll(".nav a").forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      menuToggle.textContent = "☰";
+    });
+  });
+}
 
 // Année automatique dans le footer
-document.getElementById("year").textContent = new Date().getFullYear();
+const yearElement = document.getElementById("year");
+
+if (yearElement) {
+  yearElement.textContent = new Date().getFullYear();
+}
 
 // Préremplir le formulaire avec l'offre sélectionnée
 document.querySelectorAll("[data-service]").forEach((button) => {
   button.addEventListener("click", () => {
     const service = button.dataset.service;
     const serviceSelect = document.getElementById("service");
+
+    if (!serviceSelect) return;
 
     const matchingOption = [...serviceSelect.options].find((option) =>
       option.text.toLowerCase().includes(service.toLowerCase())
@@ -43,53 +50,71 @@ document.querySelectorAll("[data-service]").forEach((button) => {
 const contactForm = document.getElementById("contact-form");
 const formNote = document.getElementById("form-note");
 
-contactForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
+if (contactForm && formNote) {
+  contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  const formData = new FormData(contactForm);
+    const formData = new FormData(contactForm);
 
-  const name = (formData.get("name") || "").trim();
-  const email = (formData.get("email") || "").trim();
-  const service = formData.get("service") || "";
-  const message = (formData.get("message") || "").trim();
+    const name = (formData.get("name") || "").trim();
+    const email = (formData.get("email") || "").trim();
+    const service = formData.get("service") || "";
 
-  if (!name || !email || !service || !message) {
-    formNote.textContent = "Merci de remplir tous les champs.";
-    return;
-  }
+    // La description sera remplie dans Google Calendar
+    formData.set(
+      "message",
+      "Le client décrira son projet directement dans Google Calendar après avoir choisi son créneau."
+    );
 
-  // Remplace cette valeur par ta clé Web3Forms
-  formData.append("access_key", "72bd1a24-81e1-4744-a778-1f9d56d21d0f");
-
-  formData.set("subject", "Demande de devis NEXORA - " + service);
-  formData.set(
-    "from_name",
-    "NEXORA - Formulaire du site"
-  );
-
-  formNote.textContent = "Envoi de votre demande...";
-  
-  const submitButton = contactForm.querySelector('[type="submit"]');
-  if (submitButton) submitButton.disabled = true;
-
-  try {
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData
-    });
-
-    const result = await response.json();
-
-    if (result.success) {
-  window.location.href = "merci.html";
-  } else {
-      formNote.textContent =
-        "L'envoi a échoué. Vérifiez la configuration et réessayez.";
+    if (!name || !email || !service) {
+      formNote.textContent = "Merci de remplir tous les champs obligatoires.";
+      return;
     }
-  } catch (error) {
-    formNote.textContent =
-      "Impossible d'envoyer votre demande. Réessayez plus tard.";
-  } finally {
-    if (submitButton) submitButton.disabled = false;
-  }
-});
+
+    // Remplace par ta nouvelle clé Web3Forms
+    formData.set("access_key", "REMPLACE_PAR_TA_NOUVELLE_CLE");
+
+    formData.set("subject", "Demande NEXORA - " + service);
+    formData.set("from_name", "NEXORA - Formulaire du site");
+
+    formNote.textContent = "Envoi de votre demande...";
+
+    const submitButton = contactForm.querySelector('[type="submit"]');
+
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        formNote.textContent =
+          "Demande envoyée avec succès ! Redirection vers Google Calendar...";
+
+        // Redirection après confirmation de l'envoi
+        window.location.assign(
+          "https://calendar.app.google/g55Wh5du6b4amngw6"
+        );
+
+      } else {
+        formNote.textContent =
+          "L'envoi a échoué. Vérifiez la configuration et réessayez.";
+      }
+
+    } catch (error) {
+      formNote.textContent =
+        "Impossible d'envoyer votre demande. Réessayez plus tard.";
+
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+      }
+    }
+  });
+}
