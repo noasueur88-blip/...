@@ -109,7 +109,8 @@ if (contactForm && formNote) {
 
     } catch (error) {
       formNote.textContent =
-        "Impossible d'envoyer votre demande. Réessayez plus tard.";
+          "Erreur Web3Forms : " + (result.message || "Erreur inconnue");
+          console.error("Erreur Web3Forms :", result);
 
     } finally {
       if (submitButton) {
